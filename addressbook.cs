@@ -52,7 +52,69 @@ namespace AddressBook
 
         }
 
+        public void Editcontact()
+        {
+            Console.WriteLine("to edit contact list enter firstname");
+            string name = Console.ReadLine();
+            foreach (var data in con)
+            {
+                if (con.Contains(data))
+                {
+                    if (data.Firstname == name)
+                    {
+                        Console.WriteLine("name is exits");
+                        Console.WriteLine("to edit contact\n1)Lastname\n2)Address\n3)City\n4)State\n5)Zip\n6)Phonenumber\n7)email");
+                        int option = Convert.ToInt32(Console.ReadLine());
+
+                        switch (option)
+                        {
+                            case 1:
+                                Console.WriteLine("enter new lastname");
+                                string lastname = Console.ReadLine()!;
+                                data.Lastname = lastname;
+                                break;
+                            case 2:
+                                Console.WriteLine("enter new address");
+                                string address = Console.ReadLine();
+                                data.Address = address;
+                                break;
+                            case 3:
+                                Console.WriteLine("enter new city");
+                                string city = Console.ReadLine();
+                                data.City = city;
+                                break;
+                            case 4:
+                                Console.WriteLine("enter new state");
+                                string state = Console.ReadLine();
+                                data.State = state;
+                                break;
+                            case 5:
+                                Console.WriteLine("enter new zip");
+                                int zip = Convert.ToInt32(Console.ReadLine());
+                                data.Zip = zip;
+                                break;
+                            case 6:
+                                Console.WriteLine("enter new phonenumber");
+                                int phonenumber = Convert.ToInt32(Console.ReadLine());
+                                data.Phonenumber = phonenumber;
+                                break;
+                            case 7:
+                                Console.WriteLine("enter new email");
+                                string email = Console.ReadLine();
+                                data.email = email;
+                                break;
+
+                        }
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("name does not exits");
+                    }
+                }
+            }
 
 
+
+        }
     }
-}
