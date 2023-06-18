@@ -7,7 +7,7 @@
             addressbook Addressbook = new addressbook();
             while (true)
             {
-                Console.WriteLine("select \n1)create contact\n2)display\n3)edit contact");
+                Console.WriteLine("select \n1)create contact\n2)display\n3)edit contact\n4)DeleteContactUsingName");
                 int option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
@@ -21,6 +21,10 @@
                     case 3:
                         Addressbook.Editcontact();
                         break;
+                    case 4:
+                        Addressbook.DeleteContactUsingName();
+                        break;
+
                 }
             }
 

@@ -26,7 +26,7 @@ namespace AddressBook
             Console.WriteLine("Enter Zip");
             contact.Zip = Convert.ToInt16(Console.ReadLine());
             Console.WriteLine("Enter Phonenumber");
-            contact.Phonenumber = Convert.ToInt16(Console.ReadLine());
+            contact.Phonenumber = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter email");
             contact.email = Console.ReadLine()!;
 
@@ -47,7 +47,7 @@ namespace AddressBook
                 Console.WriteLine("Zip--" + contact.Zip);
                 Console.WriteLine("Phonenumber--" + contact.Phonenumber);
                 Console.WriteLine("email--" + contact.email);
-
+                Console.WriteLine();
             }
 
         }
@@ -70,7 +70,7 @@ namespace AddressBook
                         {
                             case 1:
                                 Console.WriteLine("enter new lastname");
-                                string lastname = Console.ReadLine()!;
+                                string lastname = Console.ReadLine();
                                 data.Lastname = lastname;
                                 break;
                             case 2:
@@ -117,4 +117,33 @@ namespace AddressBook
 
 
         }
+        public void DeleteContactUsingName()
+        {
+            Console.WriteLine("Enter the first name of the contact to delete:");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Enter the last name of the contact to delete:");
+            string lastName = Console.ReadLine();
+            Contact person = null;
+            foreach (var data in con)
+            {
+                if (data.Firstname.Equals(firstName, StringComparison.OrdinalIgnoreCase) &&
+                    data.Lastname.Equals(lastName, StringComparison.OrdinalIgnoreCase))
+                {
+                    person = data;
+                    break;
+                }
+            }    
+            if (person!= null)
+                {
+                    con.Remove(person);
+                    Console.WriteLine("Contact deleted successfully!");
+            }
+            else
+            {
+                    Console.WriteLine("Contact not found!");
+            }
+            
+        }
+
     }
+}
