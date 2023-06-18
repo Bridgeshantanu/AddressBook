@@ -10,6 +10,8 @@ namespace AddressBook
     {
 
         List<Contact> con = new List<Contact>();
+   
+        
         public void AddContact()
         {
             Contact contact = new Contact();
@@ -136,14 +138,22 @@ namespace AddressBook
             if (person!= null)
                 {
                     con.Remove(person);
-                    Console.WriteLine("Contact deleted successfully!");
+                    Console.WriteLine("Contact deleted successfully");
             }
             else
             {
-                    Console.WriteLine("Contact not found!");
+                    Console.WriteLine("Contact not found");
             }
             
         }
+        public List<Contact> SearchByCityOrState(string cityOrState)
+        {
+            List<Contact> searchResults = con.FindAll(contact =>
+                contact.City.Equals(cityOrState, StringComparison.OrdinalIgnoreCase) ||
+                contact.State.Equals(cityOrState, StringComparison.OrdinalIgnoreCase));
 
+            return searchResults;
+        }
     }
+
 }
