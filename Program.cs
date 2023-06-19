@@ -11,7 +11,8 @@
             while (true)
             {
                 Console.WriteLine("select \n1)create contact\n2)display\n3)edit contact\n4)DeleteContactUsingName" +
-                    "\n5)search by city or state\n6)view persons by city\n7)view persons by state");
+                    "\n5)search by city or state\n6)view persons by city\n7)view persons by state" +
+                    "\n8)get contact count by city\n9)get contact count by state");
                 int option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
@@ -112,6 +113,20 @@
                         }
 
                         break;
+                    case 8:
+                        Console.WriteLine("Enter city to get contact count:");
+                        string City = Console.ReadLine();
+                        int contactCountByCity = Addressbook.GetContactCountByCity(City);
+                        Console.WriteLine($"Contact count in {City}: {contactCountByCity}");
+                        break;
+                    case 9:  
+                        Console.WriteLine("Enter state to get contact count:");
+                        string State = Console.ReadLine();
+                        int contactCountByState = Addressbook.GetContactCountByState(State);
+                        Console.WriteLine($"Contact count in {State}: {contactCountByState}");
+                        break;
+                        
+
                 }
             }
 

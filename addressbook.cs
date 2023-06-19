@@ -160,7 +160,7 @@ namespace AddressBook
 
         public List<Contact> GetContactsByState(string state) => contactsByState.TryGetValue(state, out var contactsInState) ? contactsInState : new List<Contact>();
 
-        private void AddToDictionary(string key, Contact contact, Dictionary<string, List<Contact>> dictionary)
+        public void AddToDictionary(string key, Contact contact, Dictionary<string, List<Contact>> dictionary)
         {
             if (dictionary.ContainsKey(key))
             {
@@ -171,6 +171,18 @@ namespace AddressBook
                 dictionary[key] = new List<Contact> { contact };
             }
         }
+        public int GetContactCountByCity(string city)
+        {
+            return contactsByCity.Values.SelectMany(list => list)
+                                        .Count(contact => contact.City.Equals(city, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public int GetContactCountByState(string state)
+        {
+            return contactsByState.Values.SelectMany(list => list)
+                                        .Count(contact => contact.State.Equals(state, StringComparison.OrdinalIgnoreCase));
+        }
+
 
 
     }
