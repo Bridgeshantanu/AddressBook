@@ -17,6 +17,9 @@ namespace AddressBook
         public long Phonenumber { get; set; }
         public string email { get; set; }
 
-      
+      public override string ToString()
+        {
+            return $"Name: {Firstname} {Lastname}\nAddress: {Address}\nCity: {City}\nState: {State}\nZip: {Zip}\nPhone: {Phonenumber}\nEmail: {email}\n";
+        }
     }
 }

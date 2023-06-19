@@ -12,7 +12,7 @@
             {
                 Console.WriteLine("select \n1)create contact\n2)display\n3)edit contact\n4)DeleteContactUsingName" +
                     "\n5)search by city or state\n6)view persons by city\n7)view persons by state" +
-                    "\n8)get contact count by city\n9)get contact count by state");
+                    "\n8)get contact count by city\n9)get contact count by state\n10)sort contacts by name");
                 int option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
@@ -125,7 +125,17 @@
                         int contactCountByState = Addressbook.GetContactCountByState(State);
                         Console.WriteLine($"Contact count in {State}: {contactCountByState}");
                         break;
-                        
+                    case 10:
+
+                        Addressbook.SortContactsByName();
+                        Console.WriteLine("Sorted Contacts:");
+                        foreach (var contact in Addressbook.con)
+                        {
+                            Console.WriteLine(contact);
+                        }
+                        break;
+
+
 
                 }
             }

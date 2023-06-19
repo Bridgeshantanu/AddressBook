@@ -9,7 +9,7 @@ namespace AddressBook
     internal class addressbook
     {
 
-        List<Contact> con = new List<Contact>();
+        public List<Contact> con = new List<Contact>();
         Dictionary<string, List<Contact>> contactsByCity = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> contactsByState = new Dictionary<string, List<Contact>>();
 
@@ -148,7 +148,7 @@ namespace AddressBook
             }
             
         }
-        public List<Contact> SearchByCityOrState(string cityOrState)
+        public  List<Contact> SearchByCityOrState(string cityOrState)
         {
             List<Contact> searchResults = con.FindAll(contact =>
                 contact.City.Equals(cityOrState, StringComparison.OrdinalIgnoreCase) ||
@@ -183,6 +183,11 @@ namespace AddressBook
                                         .Count(contact => contact.State.Equals(state, StringComparison.OrdinalIgnoreCase));
         }
 
+       
+        public void SortContactsByName()
+        {
+            con.Sort((c1, c2) => string.Compare(c1.Firstname + c1.Lastname, c2.Firstname + c2.Lastname));
+        }
 
 
     }
