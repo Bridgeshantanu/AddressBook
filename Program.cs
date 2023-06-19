@@ -10,7 +10,8 @@
             
             while (true)
             {
-                Console.WriteLine("select \n1)create contact\n2)display\n3)edit contact\n4)DeleteContactUsingName\n5)search by city or state");
+                Console.WriteLine("select \n1)create contact\n2)display\n3)edit contact\n4)DeleteContactUsingName" +
+                    "\n5)search by city or state\n6)view persons by city\n7)view persons by state");
                 int option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
@@ -55,8 +56,62 @@
                         }
 
                         break;
+                    
+                    case 6:
+                        Console.WriteLine("Enter city to view contacts:");
+                        string city = Console.ReadLine();
+                        List<Contact> contactsInCity = Addressbook.GetContactsByCity(city);
 
+                        if (contactsInCity.Count > 0)
+                        {
+                            Console.WriteLine($"Contacts in {city}:");
+                            foreach (var contact in contactsInCity)
+                            {
+                                Console.WriteLine("Firstname--" + contact.Firstname);
+                                Console.WriteLine("Lastname--" + contact.Lastname);
+                                Console.WriteLine("Address--" + contact.Address);
+                                Console.WriteLine("City--" + contact.City);
+                                Console.WriteLine("State--" + contact.State);
+                                Console.WriteLine("Zip--" + contact.Zip);
+                                Console.WriteLine("Phonenumber--" + contact.Phonenumber);
+                                Console.WriteLine("email--" + contact.email);
+                                Console.WriteLine();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No contacts found in the specified city.");
+                        }
 
+                        break;
+
+                    case 7:
+                        Console.WriteLine("Enter state to view contacts:");
+                        string state = Console.ReadLine();
+                        List<Contact> contactsInState = Addressbook.GetContactsByState(state);
+
+                        if (contactsInState.Count > 0)
+                        {
+                            Console.WriteLine($"Contacts in {state}:");
+                            foreach (var contact in contactsInState)
+                            {
+                                Console.WriteLine("Firstname--" + contact.Firstname);
+                                Console.WriteLine("Lastname--" + contact.Lastname);
+                                Console.WriteLine("Address--" + contact.Address);
+                                Console.WriteLine("City--" + contact.City);
+                                Console.WriteLine("State--" + contact.State);
+                                Console.WriteLine("Zip--" + contact.Zip);
+                                Console.WriteLine("Phonenumber--" + contact.Phonenumber);
+                                Console.WriteLine("email--" + contact.email);
+                                Console.WriteLine();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No contacts found in the specified state.");
+                        }
+
+                        break;
                 }
             }
 

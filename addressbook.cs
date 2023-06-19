@@ -10,8 +10,9 @@ namespace AddressBook
     {
 
         List<Contact> con = new List<Contact>();
-   
-        
+        Dictionary<string, List<Contact>> contactsByCity = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> contactsByState = new Dictionary<string, List<Contact>>();
+
         public void AddContact()
         {
             Contact contact = new Contact();
@@ -34,7 +35,8 @@ namespace AddressBook
 
 
             con.Add(contact);
-
+            AddToDictionary(contact.City, contact, contactsByCity);
+            AddToDictionary(contact.State, contact, contactsByState);
 
         }
         public void Display()
@@ -154,6 +156,23 @@ namespace AddressBook
 
             return searchResults;
         }
+        public List<Contact> GetContactsByCity(string city) => contactsByCity.TryGetValue(city, out var contactsInCity) ? contactsInCity : new List<Contact>();
+
+        public List<Contact> GetContactsByState(string state) => contactsByState.TryGetValue(state, out var contactsInState) ? contactsInState : new List<Contact>();
+
+        private void AddToDictionary(string key, Contact contact, Dictionary<string, List<Contact>> dictionary)
+        {
+            if (dictionary.ContainsKey(key))
+            {
+                dictionary[key].Add(contact);
+            }
+            else
+            {
+                dictionary[key] = new List<Contact> { contact };
+            }
+        }
+
+
     }
 
 }
