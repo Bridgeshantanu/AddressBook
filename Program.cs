@@ -7,12 +7,14 @@
             
 
             addressbook Addressbook = new addressbook();
-            
+            AddressBookFile addressBookFile = new AddressBookFile();
+           
             while (true)
             {
                 Console.WriteLine("select \n1)create contact\n2)display\n3)edit contact\n4)DeleteContactUsingName" +
                     "\n5)search by city or state\n6)view persons by city\n7)view persons by state" +
-                    "\n8)get contact count by city\n9)get contact count by state\n10)sort contacts by name");
+                    "\n8)get contact count by city\n9)get contact count by state\n10)sort contacts by name" +
+                    "\n11)write contact into text file");
                 int option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
@@ -134,16 +136,18 @@
                             Console.WriteLine(contact);
                         }
                         break;
-
-
+                    case 11:
+                        addressBookFile.WriteAddressBookToFile(Addressbook);
+                        break;
 
                 }
             }
 
-           
-
+            
+            
 
 
         }
+        
     }
 }

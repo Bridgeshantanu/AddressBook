@@ -12,6 +12,7 @@ namespace AddressBook
         public List<Contact> con = new List<Contact>();
         Dictionary<string, List<Contact>> contactsByCity = new Dictionary<string, List<Contact>>();
         Dictionary<string, List<Contact>> contactsByState = new Dictionary<string, List<Contact>>();
+        
 
         public void AddContact()
         {
@@ -27,7 +28,7 @@ namespace AddressBook
             Console.WriteLine("Enter State");
             contact.State = Console.ReadLine()!;
             Console.WriteLine("Enter Zip");
-            contact.Zip = Convert.ToInt16(Console.ReadLine());
+            contact.Zip = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Phonenumber");
             contact.Phonenumber = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter email");
@@ -188,7 +189,9 @@ namespace AddressBook
         {
             con.Sort((c1, c2) => string.Compare(c1.Firstname + c1.Lastname, c2.Firstname + c2.Lastname));
         }
-
+        
+       
+        
 
     }
 
