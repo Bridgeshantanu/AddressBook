@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using CsvHelper;
 using System.Globalization;
+using Newtonsoft.Json;
 
 namespace AddressBook
 {
@@ -29,19 +30,40 @@ namespace AddressBook
         public void CreateCsv(addressbook Addressbook)
         {
             string Path1 = @"G:\Dot net\repos\AddressBook\AddressBook.csv";
-            using (StreamWriter sw = new StreamWriter(Path1))
+            using (FileStream fs = new FileStream(Path1, FileMode.Append, FileAccess.Write))
             {
-                using (CsvWriter cs = new CsvWriter(sw, CultureInfo.InvariantCulture))
+                using (StreamWriter sw = new StreamWriter(fs))
                 {
-                    cs.WriteHeader<Contact>();
-                    foreach (var c in Addressbook.con)
+                    using (CsvWriter cs = new CsvWriter(sw, CultureInfo.InvariantCulture))
                     {
-                        cs.WriteRecord(c);
+                        cs.WriteHeader<Contact>();
+                        foreach (var c in Addressbook.con)
+                        {
+                            cs.WriteRecord(c);
+                        }
+                        
                     }
-                }
 
+                }
             }
             Console.WriteLine("Address book written to csv file successfully.");
         }
+        public void AddToJSONFile(addressbook Addressbook)
+        {
+            string Path = @"G:\Dot net\repos\AddressBook\AddressBook.jason";
+            
+            using (StreamWriter writer = new StreamWriter(Path))
+            {
+                    JsonSerializer serializer = new JsonSerializer();
+                    using (JsonWriter jsonWriter = new JsonTextWriter(writer))
+                    {
+                        serializer.Serialize(jsonWriter, Addressbook.con);
+                    }
+
+            }
+            
+            Console.WriteLine("Address book written to jason file successfully.");
+        }
+
     }
 }

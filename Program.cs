@@ -14,7 +14,7 @@
                 Console.WriteLine("select \n1)create contact\n2)display\n3)edit contact\n4)DeleteContactUsingName" +
                     "\n5)search by city or state\n6)view persons by city\n7)view persons by state" +
                     "\n8)get contact count by city\n9)get contact count by state\n10)sort contacts by name" +
-                    "\n11)write contact into text file\n)12create csv");
+                    "\n11)write contact into text file\n12)create csv\n13)add to jason file\n14)convert into all file");
                 int option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
@@ -141,6 +141,14 @@
                         break;
                     case 12:
                         addressBookFile.CreateCsv(Addressbook);
+                        break;
+                    case 13:
+                        addressBookFile.AddToJSONFile(Addressbook);
+                        break;
+                    case 14:
+                        addressBookFile.WriteAddressBookToFile(Addressbook);
+                        addressBookFile.CreateCsv(Addressbook);
+                        addressBookFile.AddToJSONFile(Addressbook);
                         break;
                 }
             }
