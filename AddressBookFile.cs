@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using CsvHelper;
+using System.Globalization;
 
 namespace AddressBook
 {
@@ -23,6 +25,23 @@ namespace AddressBook
                 }
             }
             Console.WriteLine("Address book written to file successfully.");
+        }
+        public void CreateCsv(addressbook Addressbook)
+        {
+            string Path1 = @"G:\Dot net\repos\AddressBook\AddressBook.csv";
+            using (StreamWriter sw = new StreamWriter(Path1))
+            {
+                using (CsvWriter cs = new CsvWriter(sw, CultureInfo.InvariantCulture))
+                {
+                    cs.WriteHeader<Contact>();
+                    foreach (var c in Addressbook.con)
+                    {
+                        cs.WriteRecord(c);
+                    }
+                }
+
+            }
+            Console.WriteLine("Address book written to csv file successfully.");
         }
     }
 }
