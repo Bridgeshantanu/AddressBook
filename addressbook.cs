@@ -131,7 +131,7 @@ namespace AddressBook
             Contact person = null;
             foreach (var data in con)
             {
-                if (data.Firstname.Equals(firstName, StringComparison.OrdinalIgnoreCase) &&
+                if (data.Firstname.Equals(firstName, StringComparison.OrdinalIgnoreCase) &
                     data.Lastname.Equals(lastName, StringComparison.OrdinalIgnoreCase))
                 {
                     person = data;
